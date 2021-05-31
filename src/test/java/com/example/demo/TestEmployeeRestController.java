@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,18 +21,21 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.example.demo.controller.EmployeeRestController;
+
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @TestPropertySource("classpath:application-test.properties")
 public class TestEmployeeRestController {
-
+	public static Logger logger=  LoggerFactory.getLogger(EmployeeRestController.class);
+	
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@Test
 	@Disabled
 	public void testSaveEmployee() throws Exception {
-
+     logger.info("testing save employee");
 		//1. create dummy request
 		MockHttpServletRequestBuilder req =
 		MockMvcRequestBuilders
